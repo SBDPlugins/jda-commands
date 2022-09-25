@@ -84,12 +84,10 @@ public class ButtonDefinition {
 
         Emoji emoji;
         String emojiString = button.emoji();
-        if (emojiString.matches("<:[\\w-]{2,}:[0-9]{4,}>")) {
-            emoji = Emoji.fromFormatted(emojiString);
-        } else if (emojiString.startsWith("U+") || emojiString.startsWith("u+")) {
-            emoji = Emoji.fromUnicode(emojiString);
-        } else {
+        if (emojiString.isEmpty()) {
             emoji = null;
+        } else {
+            emoji = Emoji.fromFormatted(emojiString);
         }
 
         String name = button.id().isEmpty() ? method.getName() : button.id();
@@ -112,7 +110,7 @@ public class ButtonDefinition {
      * @return the transformed {@link net.dv8tion.jda.api.interactions.components.buttons.Button Button}
      */
     public net.dv8tion.jda.api.interactions.components.buttons.Button toButton() {
-        String label = getLabel().orElse("empty label");
+        String label = getLabel().orElse("");
         String id = getLink().orElse(this.id);
         if (emoji == null) {
             return net.dv8tion.jda.api.interactions.components.buttons.Button.of(style, id, label);
