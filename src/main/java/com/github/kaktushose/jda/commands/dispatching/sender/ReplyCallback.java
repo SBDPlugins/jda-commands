@@ -2,9 +2,9 @@ package com.github.kaktushose.jda.commands.dispatching.sender;
 
 import com.github.kaktushose.jda.commands.embeds.EmbedDTO;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -33,16 +33,16 @@ public interface ReplyCallback {
      */
     void sendMessage(@NotNull String message, boolean ephemeral, @Nullable Consumer<Message> success);
 
-    /**
-     * Sends a message to the TextChannel where the command was called. This method also allows to access the JDA RestAction
-     * consumer.
-     *
-     * @param message   the {@link Message} to send
-     * @param ephemeral whether to send an ephemeral reply
-     * @param success   the JDA RestAction success consumer
-     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
-     */
-    void sendMessage(@NotNull Message message, boolean ephemeral, @Nullable Consumer<Message> success);
+//    /**
+//     * Sends a message to the TextChannel where the command was called. This method also allows to access the JDA RestAction
+//     * consumer.
+//     *
+//     * @param message   the {@link Message} to send
+//     * @param ephemeral whether to send an ephemeral reply
+//     * @param success   the JDA RestAction success consumer
+//     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
+//     */
+//    void sendMessage(@NotNull Message message, boolean ephemeral, @Nullable Consumer<Message> success);
 
     /**
      * Sends a message to the TextChannel where the command was called. This method also allows to access the JDA RestAction
@@ -77,8 +77,13 @@ public interface ReplyCallback {
      * @param success   the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
      */
-    default void sendMessage(@NotNull MessageBuilder builder, boolean ephemeral, @Nullable Consumer<Message> success) {
-        sendMessage(builder.build(), ephemeral, success);
+    default void sendMessage(@NotNull MessageCreateData builder, boolean ephemeral, @Nullable Consumer<Message> success) {
+        //TODO Fix
+        if (builder.getEmbeds().isEmpty()) {
+            sendMessage(builder.getContent(), ephemeral, success);
+        } else {
+            sendMessage(builder.getEmbeds().get(0), ephemeral, success);
+        }
     }
 
     /**

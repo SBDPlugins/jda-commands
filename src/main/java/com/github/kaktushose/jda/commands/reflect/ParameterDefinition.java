@@ -10,9 +10,15 @@ import com.github.kaktushose.jda.commands.annotations.interactions.Param;
 import com.github.kaktushose.jda.commands.dispatching.validation.Validator;
 import com.github.kaktushose.jda.commands.dispatching.validation.ValidatorRegistry;
 import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.ChannelType;
+import net.dv8tion.jda.api.entities.channel.concrete.*;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildMessageChannel;
 import net.dv8tion.jda.api.interactions.commands.Command.Choice;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
+import net.dv8tion.jda.internal.entities.ForumChannelImpl;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -71,6 +77,7 @@ public class ParameterDefinition {
             put(AudioChannel.class, OptionType.CHANNEL);
             put(VoiceChannel.class, OptionType.CHANNEL);
             put(StageChannel.class, OptionType.CHANNEL);
+            put(ForumChannelImpl.class, OptionType.CHANNEL);
             put(Role.class, OptionType.ROLE);
         }
     };
@@ -88,6 +95,7 @@ public class ParameterDefinition {
             put(AudioChannel.class, Collections.singletonList(ChannelType.VOICE));
             put(VoiceChannel.class, Collections.singletonList(ChannelType.VOICE));
             put(StageChannel.class, Collections.singletonList(ChannelType.STAGE));
+            put(ForumChannel.class, Collections.singletonList(ChannelType.FORUM));
         }
     };
 

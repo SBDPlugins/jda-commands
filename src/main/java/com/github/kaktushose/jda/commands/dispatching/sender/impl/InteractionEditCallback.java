@@ -8,7 +8,9 @@ import net.dv8tion.jda.api.interactions.InteractionHook;
 import net.dv8tion.jda.api.interactions.callbacks.IMessageEditCallback;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
-import net.dv8tion.jda.api.requests.restaction.WebhookMessageUpdateAction;
+import net.dv8tion.jda.api.requests.restaction.WebhookMessageEditAction;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
+import net.dv8tion.jda.api.utils.messages.MessageEditData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,7 +48,7 @@ public class InteractionEditCallback implements EditCallback {
     }
 
     @Override
-    public void editMessage(@NotNull Message message, @Nullable Consumer<Message> success) {
+    public void editMessage(@NotNull MessageEditData message, @Nullable Consumer<Message> success) {
         initialReply(hook -> send(hook.editOriginal(message), success));
     }
 
@@ -59,7 +61,7 @@ public class InteractionEditCallback implements EditCallback {
     public void deleteOriginal() {
         initialReply(hook -> hook.retrieveOriginal().queue(message -> {
             if (message.isEphemeral()) {
-                hook.editOriginalEmbeds().setActionRows().setContent("*deleted*").queue();
+                hook.editOriginalEmbeds().setComponents().setContent("*deleted*").queue();
                 return;
             }
             hook.deleteOriginal().queue();
@@ -76,9 +78,9 @@ public class InteractionEditCallback implements EditCallback {
         event.deferEdit().queue();
     }
 
-    private void send(WebhookMessageUpdateAction<Message> restAction, Consumer<Message> success) {
-        if (actionRows.size() > 0) {
-            restAction.setActionRows(actionRows).queue(success);
+    private void send(WebhookMessageEditAction<Message> restAction, Consumer<Message> success) {
+        if (!actionRows.isEmpty()) {
+            restAction.setComponents(actionRows).queue(success);
         }
         restAction.queue(success);
     }

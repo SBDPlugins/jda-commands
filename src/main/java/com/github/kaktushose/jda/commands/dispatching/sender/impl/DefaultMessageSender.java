@@ -3,6 +3,7 @@ package com.github.kaktushose.jda.commands.dispatching.sender.impl;
 import com.github.kaktushose.jda.commands.dispatching.CommandContext;
 import com.github.kaktushose.jda.commands.dispatching.sender.MessageSender;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -16,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 public class DefaultMessageSender implements MessageSender {
 
     @Override
-    public void sendGenericHelpMessage(@NotNull CommandContext context, @NotNull Message message) {
+    public void sendGenericHelpMessage(@NotNull CommandContext context, @NotNull MessageCreateData message) {
         if (context.isSlash()) {
             context.getInteractionEvent().reply(message).queue();
         } else {
@@ -25,7 +26,7 @@ public class DefaultMessageSender implements MessageSender {
     }
 
     @Override
-    public void sendSpecificHelpMessage(@NotNull CommandContext context, @NotNull Message message) {
+    public void sendSpecificHelpMessage(@NotNull CommandContext context, @NotNull MessageCreateData message) {
         if (context.isSlash()) {
             context.getInteractionEvent().reply(message).queue();
         } else {
@@ -34,7 +35,7 @@ public class DefaultMessageSender implements MessageSender {
     }
 
     @Override
-    public void sendErrorMessage(@NotNull CommandContext context, @NotNull Message message) {
+    public void sendErrorMessage(@NotNull CommandContext context, @NotNull MessageCreateData message) {
         if (context.isSlash()) {
             context.getInteractionEvent().reply(message).queue();
         } else {

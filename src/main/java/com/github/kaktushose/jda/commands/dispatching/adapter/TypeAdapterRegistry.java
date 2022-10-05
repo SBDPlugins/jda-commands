@@ -7,6 +7,10 @@ import com.github.kaktushose.jda.commands.embeds.error.ErrorMessageFactory;
 import com.github.kaktushose.jda.commands.reflect.CommandDefinition;
 import com.github.kaktushose.jda.commands.reflect.ParameterDefinition;
 import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.concrete.*;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.GuildMessageChannel;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
@@ -65,6 +69,7 @@ public class TypeAdapterRegistry {
         register(AudioChannel.class, new AudioChannelAdapter());
         register(VoiceChannel.class, new VoiceChannelAdapter());
         register(StageChannel.class, new StageChannelAdapter());
+        register(ForumChannel.class, new ForumChannelAdapter());
         register(Role.class, new RoleAdapter());
     }
 

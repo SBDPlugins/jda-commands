@@ -1,9 +1,10 @@
 package com.github.kaktushose.jda.commands.embeds;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 
 import java.awt.*;
 import java.io.Serializable;
@@ -237,8 +238,8 @@ public class EmbedDTO implements Serializable {
      *
      * @return the {@link net.dv8tion.jda.api.entities.Message}
      */
-    public Message toMessage() {
-        return new MessageBuilder().setEmbeds(toMessageEmbed()).build();
+    public MessageCreateData toMessage() {
+        return new MessageCreateBuilder().setEmbeds(toMessageEmbed()).build();
     }
 
     /**
