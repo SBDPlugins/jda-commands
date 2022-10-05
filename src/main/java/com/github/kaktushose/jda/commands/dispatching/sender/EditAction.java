@@ -3,8 +3,8 @@ package com.github.kaktushose.jda.commands.dispatching.sender;
 import com.github.kaktushose.jda.commands.embeds.EmbedDTO;
 import com.github.kaktushose.jda.commands.interactions.components.Component;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.utils.messages.MessageEditData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,18 +48,9 @@ public interface EditAction {
     /**
      * Edits the original message the button is attached to.
      *
-     * @param message the new {@code Message}
-     */
-    default void edit(@NotNull Message message) {
-        edit(message, null);
-    }
-
-    /**
-     * Edits the original message the button is attached to.
-     *
      * @param builder the new {@code MessageBuilder}
      */
-    default void edit(@NotNull MessageBuilder builder) {
+    default void edit(@NotNull MessageEditData builder) {
         edit(builder, null);
     }
 
@@ -98,18 +89,6 @@ public interface EditAction {
      * Edits the original message the button is attached to. This method also allows to access the JDA RestAction
      * consumer.
      *
-     * @param message the new {@link Message}
-     * @param success the JDA RestAction success consumer
-     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
-     */
-    default void edit(@NotNull Message message, @Nullable Consumer<Message> success) {
-        getEditCallback().editMessage(message, success);
-    }
-
-    /**
-     * Edits the original message the button is attached to. This method also allows to access the JDA RestAction
-     * consumer.
-     *
      * @param builder the new {@link EmbedBuilder}
      * @param success the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
@@ -126,7 +105,7 @@ public interface EditAction {
      * @param success the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
      */
-    default void edit(@NotNull MessageBuilder builder, @Nullable Consumer<Message> success) {
+    default void edit(@NotNull MessageEditData builder, @Nullable Consumer<Message> success) {
         getEditCallback().editMessage(builder, success);
     }
 

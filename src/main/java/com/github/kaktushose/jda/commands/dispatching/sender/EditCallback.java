@@ -2,10 +2,10 @@ package com.github.kaktushose.jda.commands.dispatching.sender;
 
 import com.github.kaktushose.jda.commands.embeds.EmbedDTO;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.components.LayoutComponent;
+import net.dv8tion.jda.api.utils.messages.MessageEditData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +40,7 @@ public interface EditCallback {
      * @param success the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
      */
-    void editMessage(@NotNull Message message, @Nullable Consumer<Message> success);
+    void editMessage(@NotNull MessageEditData message, @Nullable Consumer<Message> success);
 
     /**
      * Edits the original message the button is attached to. This method also allows to access the JDA RestAction
@@ -64,17 +64,17 @@ public interface EditCallback {
         editMessage(builder.build(), success);
     }
 
-    /**
-     * Edits the original message the button is attached to. This method also allows to access the JDA RestAction
-     * consumer.
-     *
-     * @param builder the new {@link MessageBuilder}
-     * @param success the JDA RestAction success consumer
-     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
-     */
-    default void editMessage(@NotNull MessageBuilder builder, @Nullable Consumer<Message> success) {
-        editMessage(builder.build(), success);
-    }
+//    /**
+//     * Edits the original message the button is attached to. This method also allows to access the JDA RestAction
+//     * consumer.
+//     *
+//     * @param builder the new {@link MessageBuilder}
+//     * @param success the JDA RestAction success consumer
+//     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
+//     */
+//    default void editMessage(@NotNull MessageBuilder builder, @Nullable Consumer<Message> success) {
+//        editMessage(builder.build(), success);
+//    }
 
     /**
      * Edits the original message the button is attached to. This method also allows to access the JDA RestAction

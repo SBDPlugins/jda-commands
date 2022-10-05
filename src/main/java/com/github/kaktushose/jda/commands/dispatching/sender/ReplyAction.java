@@ -4,9 +4,10 @@ import com.github.kaktushose.jda.commands.embeds.EmbedDTO;
 import com.github.kaktushose.jda.commands.interactions.components.Buttons;
 import com.github.kaktushose.jda.commands.interactions.components.Component;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
+import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -47,21 +48,21 @@ public interface ReplyAction {
         reply(String.format(format, args), isEphemeral());
     }
 
-    /**
-     * Sends a message to the TextChannel where the button was called.
-     *
-     * @param message the {@code Message} to send
-     */
-    default void reply(@NotNull Message message) {
-        reply(message, isEphemeral(), null);
-    }
+//    /**
+//     * Sends a message to the TextChannel where the button was called.
+//     *
+//     * @param message the {@code Message} to send
+//     */
+//    default void reply(@NotNull Message message) {
+//        reply(message, isEphemeral(), null);
+//    }
 
     /**
      * Sends a message to the TextChannel where the button was called.
      *
      * @param builder the {@code MessageBuilder} to send
      */
-    default void reply(@NotNull MessageBuilder builder) {
+    default void reply(@NotNull MessageCreateData builder) {
         reply(builder, isEphemeral(), null);
     }
 
@@ -109,15 +110,15 @@ public interface ReplyAction {
         reply(String.format(format, args), ephemeral);
     }
 
-    /**
-     * Sends a message to the TextChannel where the button was called.
-     *
-     * @param message   the {@code Message} to send
-     * @param ephemeral whether to send an ephemeral reply
-     */
-    default void reply(@NotNull Message message, boolean ephemeral) {
-        reply(message, ephemeral, null);
-    }
+//    /**
+//     * Sends a message to the TextChannel where the button was called.
+//     *
+//     * @param message   the {@code Message} to send
+//     * @param ephemeral whether to send an ephemeral reply
+//     */
+//    default void reply(@NotNull Message message, boolean ephemeral) {
+//        reply(message, ephemeral, null);
+//    }
 
     /**
      * Sends a message to the TextChannel where the button was called.
@@ -125,7 +126,7 @@ public interface ReplyAction {
      * @param builder   the {@code MessageBuilder} to send
      * @param ephemeral whether to send an ephemeral reply
      */
-    default void reply(@NotNull MessageBuilder builder, boolean ephemeral) {
+    default void reply(@NotNull MessageCreateData builder, boolean ephemeral) {
         reply(builder, ephemeral, null);
     }
 
@@ -162,17 +163,17 @@ public interface ReplyAction {
         reply(message, isEphemeral(), success);
     }
 
-    /**
-     * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
-     * consumer.
-     *
-     * @param message the {@link Message} to send
-     * @param success the JDA RestAction success consumer
-     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
-     */
-    default void reply(@NotNull Message message, @Nullable Consumer<Message> success) {
-        reply(message, isEphemeral(), success);
-    }
+//    /**
+//     * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
+//     * consumer.
+//     *
+//     * @param message the {@link Message} to send
+//     * @param success the JDA RestAction success consumer
+//     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
+//     */
+//    default void reply(@NotNull Message message, @Nullable Consumer<Message> success) {
+//        reply(message, isEphemeral(), success);
+//    }
 
     /**
      * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
@@ -194,7 +195,7 @@ public interface ReplyAction {
      * @param success the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
      */
-    default void reply(@NotNull MessageBuilder builder, @Nullable Consumer<Message> success) {
+    default void reply(@NotNull MessageCreateData builder, @Nullable Consumer<Message> success) {
         reply(builder, isEphemeral(), success);
     }
 
@@ -223,18 +224,18 @@ public interface ReplyAction {
         getReplyCallback().sendMessage(message, ephemeral, success);
     }
 
-    /**
-     * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
-     * consumer.
-     *
-     * @param message   the {@link Message} to send
-     * @param ephemeral whether to send an ephemeral reply
-     * @param success   the JDA RestAction success consumer
-     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
-     */
-    default void reply(@NotNull Message message, boolean ephemeral, @Nullable Consumer<Message> success) {
-        getReplyCallback().sendMessage(message, ephemeral, success);
-    }
+//    /**
+//     * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
+//     * consumer.
+//     *
+//     * @param message   the {@link Message} to send
+//     * @param ephemeral whether to send an ephemeral reply
+//     * @param success   the JDA RestAction success consumer
+//     * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
+//     */
+//    default void reply(@NotNull Message message, boolean ephemeral, @Nullable Consumer<Message> success) {
+//        getReplyCallback().sendMessage(message, ephemeral, success);
+//    }
 
     /**
      * Sends a message to the TextChannel where the button was called. This method also allows to access the JDA RestAction
@@ -258,7 +259,7 @@ public interface ReplyAction {
      * @param success   the JDA RestAction success consumer
      * @see <a href="https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/api/requests/RestAction.html">JDA RestAction Documentation</a>
      */
-    default void reply(@NotNull MessageBuilder builder, boolean ephemeral, @Nullable Consumer<Message> success) {
+    default void reply(@NotNull MessageCreateData builder, boolean ephemeral, @Nullable Consumer<Message> success) {
         getReplyCallback().sendMessage(builder, ephemeral, success);
     }
 

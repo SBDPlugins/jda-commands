@@ -7,9 +7,10 @@ import com.github.kaktushose.jda.commands.reflect.CommandDefinition;
 import com.github.kaktushose.jda.commands.reflect.ConstraintDefinition;
 import com.github.kaktushose.jda.commands.settings.GuildSettings;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.utils.messages.MessageCreateBuilder;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -36,7 +37,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getCommandNotFoundMessage(@NotNull CommandContext context) {
+    public MessageCreateData getCommandNotFoundMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("commandNotFound")) {
             return super.getCommandNotFoundMessage(context);
         }
@@ -61,11 +62,11 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
             embed = embedDTO.toMessageEmbed();
         }
 
-        return new MessageBuilder().setEmbeds(embed).build();
+        return new MessageCreateBuilder().setEmbeds(embed).build();
     }
 
     @Override
-    public Message getInsufficientPermissionsMessage(@NotNull CommandContext context) {
+    public MessageCreateData getInsufficientPermissionsMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("insufficientPermissions")) {
             return super.getInsufficientPermissionsMessage(context);
         }
@@ -84,7 +85,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getGuildMutedMessage(@NotNull CommandContext context) {
+    public MessageCreateData getGuildMutedMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("guildMuted")) {
             return super.getGuildMutedMessage(context);
         }
@@ -92,7 +93,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getChannelMutedMessage(@NotNull CommandContext context) {
+    public MessageCreateData getChannelMutedMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("channelMuted")) {
             return super.getChannelMutedMessage(context);
         }
@@ -100,7 +101,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getUserMutedMessage(@NotNull CommandContext context) {
+    public MessageCreateData getUserMutedMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("userMuted")) {
             return super.getUserMutedMessage(context);
         }
@@ -109,7 +110,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
 
 
     @Override
-    public Message getSyntaxErrorMessage(@NotNull CommandContext context) {
+    public MessageCreateData getSyntaxErrorMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("syntaxError")) {
             return super.getSyntaxErrorMessage(context);
         }
@@ -141,7 +142,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getConstraintFailedMessage(@NotNull CommandContext context, @NotNull ConstraintDefinition constraint) {
+    public MessageCreateData getConstraintFailedMessage(@NotNull CommandContext context, @NotNull ConstraintDefinition constraint) {
         if (!embedCache.containsEmbed("constraintFailed")) {
             return super.getConstraintFailedMessage(context, constraint);
         }
@@ -151,7 +152,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getCooldownMessage(@NotNull CommandContext context, long ms) {
+    public MessageCreateData getCooldownMessage(@NotNull CommandContext context, long ms) {
         if (!embedCache.containsEmbed("cooldown")) {
             return super.getCooldownMessage(context, ms);
         }
@@ -167,7 +168,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getWrongChannelTypeMessage(@NotNull CommandContext context) {
+    public MessageCreateData getWrongChannelTypeMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("wrongChannel")) {
             return super.getInsufficientPermissionsMessage(context);
         }
@@ -175,7 +176,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getCommandExecutionFailedMessage(@NotNull CommandContext context, @NotNull Exception exception) {
+    public MessageCreateData getCommandExecutionFailedMessage(@NotNull CommandContext context, @NotNull Exception exception) {
         if (!embedCache.containsEmbed("executionFailed")) {
             return super.getCommandExecutionFailedMessage(context, exception);
         }
@@ -185,7 +186,7 @@ public class JsonErrorMessageFactory extends DefaultErrorMessageFactory {
     }
 
     @Override
-    public Message getSlashCommandMigrationMessage(@NotNull CommandContext context) {
+    public MessageCreateData getSlashCommandMigrationMessage(@NotNull CommandContext context) {
         if (!embedCache.containsEmbed("migration")) {
             return super.getInsufficientPermissionsMessage(context);
         }

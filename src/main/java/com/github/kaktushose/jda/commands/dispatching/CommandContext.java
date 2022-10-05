@@ -8,6 +8,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,7 +37,7 @@ public class CommandContext {
     private CommandDefinition command;
     private List<CommandDefinition> possibleCommands;
     private List<Object> arguments;
-    private Message errorMessage;
+    private MessageCreateData errorMessage;
     private GuildSettings settings;
     private ImplementationRegistry registry;
     private JDACommands jdaCommands;
@@ -258,7 +259,7 @@ public class CommandContext {
      * @return {@link Message} to send
      */
     @Nullable
-    public Message getErrorMessage() {
+    public MessageCreateData getErrorMessage() {
         return errorMessage;
     }
 
@@ -269,7 +270,7 @@ public class CommandContext {
      * @return the current CommandContext instance
      */
     @NotNull
-    public CommandContext setErrorMessage(@NotNull Message message) {
+    public CommandContext setErrorMessage(@NotNull MessageCreateData message) {
         this.errorMessage = message;
         return this;
     }

@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import net.dv8tion.jda.api.interactions.callbacks.IReplyCallback;
 import net.dv8tion.jda.api.interactions.components.ActionRow;
+import net.dv8tion.jda.api.utils.messages.MessageCreateData;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,17 +41,17 @@ public class InteractionReplyCallback implements ReplyCallback {
 
     @Override
     public void sendMessage(@NotNull String message, boolean ephemeral, @Nullable Consumer<Message> success) {
-        initialReply(ephemeral, hook -> hook.sendMessage(message).addActionRows(actionRows).queue(success));
+        initialReply(ephemeral, hook -> hook.sendMessage(message).addComponents(actionRows).queue(success));
     }
 
     @Override
-    public void sendMessage(@NotNull Message message, boolean ephemeral, @Nullable Consumer<Message> success) {
-        initialReply(ephemeral, hook -> hook.sendMessage(message).addActionRows(actionRows).queue(success));
+    public void sendMessage(@NotNull MessageCreateData message, boolean ephemeral, @Nullable Consumer<Message> success) {
+        initialReply(ephemeral, hook -> hook.sendMessage(message).addComponents(actionRows).queue(success));
     }
 
     @Override
     public void sendMessage(@NotNull MessageEmbed embed, boolean ephemeral, @Nullable Consumer<Message> success) {
-        initialReply(ephemeral, hook -> hook.sendMessageEmbeds(embed).addActionRows(actionRows).queue(success));
+        initialReply(ephemeral, hook -> hook.sendMessageEmbeds(embed).addComponents(actionRows).queue(success));
     }
 
     @Override
