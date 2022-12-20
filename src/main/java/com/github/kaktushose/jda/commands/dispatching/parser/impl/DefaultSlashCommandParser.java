@@ -37,7 +37,7 @@ public class DefaultSlashCommandParser extends Parser<SlashCommandInteractionEve
         ErrorMessageFactory errorMessageFactory = registry.getErrorMessageFactory();
         CommandContext context = new CommandContext(event, dispatcher.getJdaCommands(), settings, registry);
 
-        context.setInput(event.getCommandPath().split("/")).setOptions(event.getOptions());
+        context.setInput(event.getFullCommandName().split("/")).setOptions(event.getOptions());
 
         if (settings.isMutedGuild()) {
             context.setErrorMessage(errorMessageFactory.getGuildMutedMessage(context));
